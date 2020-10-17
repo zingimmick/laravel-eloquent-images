@@ -21,9 +21,9 @@ class CreateImageTables extends Migration
 
         Schema::create(config('eloquent-images.table_names.model_has_images'), function (Blueprint $table) {
             $table->unsignedBigInteger('image_id');
-            $table->morphs('imagegable');
+            $table->morphs('imageable');
 
-            $table->primary(['image_id', config('eloquent-images.column_names.imagegable_morph_key'), 'imagegable_type']);
+            $table->primary(['image_id', config('eloquent-images.column_names.imageable_morph_key'), 'imageable_type']);
 
             $table->foreign('image_id')->references('id')->on('images')->onDelete('cascade');
         });

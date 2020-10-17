@@ -27,7 +27,7 @@ trait HasImages
      */
     public function images(): MorphToMany
     {
-        return $this->morphToMany(static::getImageClassName(), 'imagegable', config('eloquent-images.table_names.model_has_images'), config('eloquent-images.column_names.imagegable_morph_key'), 'image_id');
+        return $this->morphToMany(static::getImageClassName(), 'imageable', config('eloquent-images.table_names.model_has_images'), config('eloquent-images.column_names.imageable_morph_key'), 'image_id');
     }
 
     /**

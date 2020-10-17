@@ -10,9 +10,9 @@ return [
     ],
     'table_names' => [
         'images' => 'images',
-        'model_has_images' => 'imagegables',
+        'model_has_images' => 'imageables',
     ],
     'column_names' => [
-        'imagegable_morph_key' => 'imagegable_id',
+        'imageable_morph_key' => 'imageable_id',
     ],
 ];
