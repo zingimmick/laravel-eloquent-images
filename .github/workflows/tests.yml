@@ -41,12 +41,12 @@ jobs:
         run: composer run-script test:phpunit -- --coverage-clover coverage.xml
 
       - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v1.0.12
+        uses: codecov/codecov-action@v1.0.13
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
 
       - name: Upload coverage to Code Climate
-        uses: paambaati/codeclimate-action@v2.6.0
+        uses: paambaati/codeclimate-action@v2.7.4
         env:
           CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
         with:
