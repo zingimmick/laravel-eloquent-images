@@ -56,7 +56,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "EloquentImagesServiceProvider"
+                "Zing\\LaravelEloquentImages\\EloquentImagesServiceProvider"
             ]
         }
     }
