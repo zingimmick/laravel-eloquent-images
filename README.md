@@ -6,7 +6,7 @@
 <a href="https://packagist.org/packages/zing/laravel-eloquent-images"><img src="https://poser.pugx.org/zing/laravel-eloquent-images/downloads" alt="Total Downloads"></a>
 <a href="https://packagist.org/packages/zing/laravel-eloquent-images"><img src="https://poser.pugx.org/zing/laravel-eloquent-images/v/unstable.svg" alt="Latest Unstable Version"></a>
 <a href="https://packagist.org/packages/zing/laravel-eloquent-images"><img src="https://poser.pugx.org/zing/laravel-eloquent-images/license" alt="License"></a>
-<a href="https://codeclimate.com/github/zingimmick/laravel-eloquent-images/maintainability"><img src="https://api.codeclimate.com/v1/badges/68a450555e0ccf3ffa72/maintainability" alt="Code Climate" /></a>
+<a href="https://codeclimate.com/github/zingimmick/laravel-eloquent-images/maintainability"><img src="https://api.codeclimate.com/v1/badges/3d8276d89c4f346eddd5/maintainability" alt="Code Climate" /></a>
 </p>
 
 > **Requires [PHP 7.2.0+](https://php.net/releases/)**
