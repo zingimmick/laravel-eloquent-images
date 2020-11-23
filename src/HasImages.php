@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
 /**
  * @property-read \Illuminate\Database\Eloquent\Collection|\Zing\LaravelEloquentImages\Image[] $images
+ * @property-read int|null $images_count
  *
  * @method static static|\Illuminate\Database\Eloquent\Builder withAllImages($images)
  * @method static static|\Illuminate\Database\Eloquent\Builder withAnyImages($images)
