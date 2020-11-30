@@ -5,6 +5,7 @@ declare(strict_types=1);
 use Zing\LaravelEloquentImages\Image;
 
 return [
+    'load_migrations' => true,
     'models' => [
         'image' => Image::class,
     ],

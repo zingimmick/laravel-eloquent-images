@@ -15,7 +15,13 @@ class EloquentImagesServiceProvider extends ServiceProvider
                 [
                     $this->getConfigPath() => config_path('eloquent-images.php'),
                 ],
-                'config'
+                'eloquent-images-config'
+            );
+            $this->publishes(
+                [
+                    $this->getMigrationsPath() => database_path('migrations'),
+                ],
+                'eloquent-images-migrations'
             );
         }
     }
@@ -23,9 +29,19 @@ class EloquentImagesServiceProvider extends ServiceProvider
     public function register(): void
     {
         $this->mergeConfigFrom($this->getConfigPath(), 'eloquent-images');
-        if ($this->app->runningInConsole()) {
-            $this->loadMigrationsFrom(__DIR__ . '/../migrations');
+        if ($this->app->runningInConsole() && $this->shouldLoadMigrations()) {
+            $this->loadMigrationsFrom($this->getMigrationsPath());
         }
+    }
+
+    protected function getMigrationsPath(): string
+    {
+        return __DIR__ . '/../migrations';
+    }
+
+    private function shouldLoadMigrations()
+    {
+        return config('eloquent-images.load_migrations');
     }
 
     protected function getConfigPath(): string
