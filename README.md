@@ -1,7 +1,7 @@
 # Laravel Eloquent Images
 <p align="center">
 <a href="https://github.com/zingimmick/laravel-eloquent-images/actions"><img src="https://github.com/zingimmick/laravel-eloquent-images/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://codecov.io/gh/zingimmick/laravel-eloquent-images"><img src="https://codecov.io/gh/zingimmick/laravel-eloquent-images/branch/main/graph/badge.svg" alt="Code Coverage" /></a>
+<a href="https://codecov.io/gh/zingimmick/laravel-eloquent-images"><img src="https://codecov.io/gh/zingimmick/laravel-eloquent-images/branch/master/graph/badge.svg" alt="Code Coverage" /></a>
 <a href="https://packagist.org/packages/zing/laravel-eloquent-images"><img src="https://poser.pugx.org/zing/laravel-eloquent-images/v/stable.svg" alt="Latest Stable Version"></a>
 <a href="https://packagist.org/packages/zing/laravel-eloquent-images"><img src="https://poser.pugx.org/zing/laravel-eloquent-images/downloads" alt="Total Downloads"></a>
 <a href="https://packagist.org/packages/zing/laravel-eloquent-images"><img src="https://poser.pugx.org/zing/laravel-eloquent-images/v/unstable.svg" alt="Latest Unstable Version"></a>
