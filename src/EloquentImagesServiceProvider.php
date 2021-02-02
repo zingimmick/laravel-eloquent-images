@@ -41,7 +41,7 @@ class EloquentImagesServiceProvider extends ServiceProvider
 
     private function shouldLoadMigrations(): bool
     {
-        return config('eloquent-images.load_migrations');
+        return (bool) config('eloquent-images.load_migrations');
     }
 
     protected function getConfigPath(): string
