@@ -133,8 +133,8 @@ trait HasImages
                 return [
                     $image->getKey() => [
                         'priority' => $key,
-                        
-                    ], ];
+                    ],
+                ];
             }
         )->toArray());
 
