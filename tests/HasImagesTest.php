@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace Zing\LaravelEloquentImages\Tests;
 
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Events\QueryExecuted;
+use Illuminate\Support\Facades\DB;
 use Zing\LaravelEloquentImages\Image;
 use Zing\LaravelEloquentImages\Tests\Models\Product;
 
@@ -42,6 +44,14 @@ class HasImagesTest extends \Zing\LaravelEloquentImages\Tests\TestCase
         $this->product->attachImages(['foo', 'bar']);
         self::assertInstanceOf($this->getImageClassName(), $this->product->images()->first());
         self::assertInstanceOf(Collection::class, $this->product->images()->get());
+    }
+
+    public function testImagesPriority(): void
+    {
+        $this->product->syncImages(['foo', 'bar']);
+        self::assertEquals(['foo', 'bar'],$this->product->images()->pluck('url')->toArray());
+        $this->product->syncImages(['bar','foo']);
+        self::assertEquals(['bar','foo'],$this->product->images()->pluck('url')->toArray());
     }
 
     public function testAttachImage(): void

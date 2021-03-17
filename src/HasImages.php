@@ -28,7 +28,8 @@ trait HasImages
      */
     public function images(): MorphToMany
     {
-        return $this->morphToMany(static::getImageClassName(), 'imageable', config('eloquent-images.table_names.model_has_images'), config('eloquent-images.column_names.imageable_morph_key'), 'image_id');
+        return $this->morphToMany(static::getImageClassName(), 'imageable', config('eloquent-images.table_names.model_has_images'), config('eloquent-images.column_names.imageable_morph_key'), 'image_id')
+            ->orderBy('priority');
     }
 
     /**
@@ -127,7 +128,11 @@ trait HasImages
      */
     public function syncImages($images)
     {
-        $this->images()->sync(static::parseImages($images));
+        $this->images()->sync(static::parseImages($images)->mapWithKeys(
+            function ($image, $key) {
+                return [$image->getKey() => ['priority' => $key]];
+            }
+        )->toArray());
 
         return $this;
     }
