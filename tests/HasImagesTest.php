@@ -44,6 +44,14 @@ class HasImagesTest extends \Zing\LaravelEloquentImages\Tests\TestCase
         self::assertInstanceOf(Collection::class, $this->product->images()->get());
     }
 
+    public function testImagesPriority(): void
+    {
+        $this->product->syncImages(['foo', 'bar']);
+        self::assertSame(['foo', 'bar'], $this->product->images()->pluck('url')->toArray());
+        $this->product->syncImages(['bar', 'foo']);
+        self::assertSame(['bar', 'foo'], $this->product->images()->pluck('url')->toArray());
+    }
+
     public function testAttachImage(): void
     {
         $this->product->attachImage('foo');

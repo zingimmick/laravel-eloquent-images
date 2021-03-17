@@ -24,7 +24,6 @@ return static function (ContainerConfigurator $containerConfigurator): void {
     $parameters->set(
         Option::SETS,
         [
-            SetList::ARRAY_STR_FUNCTIONS_TO_STATIC_CALL,
             SetList::DOCTRINE_CODE_QUALITY,
             SetList::CODING_STYLE,
             SetList::CODE_QUALITY,
