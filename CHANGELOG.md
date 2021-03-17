@@ -8,6 +8,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+### Added
+
+- [#16] Add priority
+
+### Changed
+
+- [#15] Bump codecov/codecov-action from v1.2.1 to v1.2.2
+- [#14] Bump actions/cache from v2 to v2.1.4
+
+## [0.1.1] - 2021-01-11
+
 ### Changed
 
 - [#13] Bump codecov/codecov-action from v1.2.0 to v1.2.1
@@ -47,3 +58,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [#9]: https://github.com/zingimmick/laravel-eloquent-images/pull/9
 [#8]: https://github.com/zingimmick/laravel-eloquent-images/pull/8
 [0.1.0]: https://github.com/zingimmick/laravel-eloquent-images/compare/0.0.1...0.1.0
+[#16]: https://github.com/zingimmick/laravel-eloquent-images/pull/16
+[#15]: https://github.com/zingimmick/laravel-eloquent-images/pull/15
+[#14]: https://github.com/zingimmick/laravel-eloquent-images/pull/14
