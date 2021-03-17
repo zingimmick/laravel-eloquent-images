@@ -130,7 +130,11 @@ trait HasImages
     {
         $this->images()->sync(static::parseImages($images)->mapWithKeys(
             function ($image, $key) {
-                return [$image->getKey() => ['priority' => $key]];
+                return [
+                    $image->getKey() => [
+                        'priority' => $key,
+                        
+                    ], ];
             }
         )->toArray());
 
