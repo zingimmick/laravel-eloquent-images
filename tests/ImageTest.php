@@ -14,16 +14,11 @@ class ImageTest extends TestCase
     public function testFillable(): void
     {
         $name = $this->faker->name;
-        Image::query()->create(
-            [
-                'url' => $name,
-            ]
-        );
-        $this->assertDatabaseHas(
-            Image::query()->getModel()->getTable(),
-            [
-                'url' => $name,
-            ]
-        );
+        Image::query()->create([
+            'url' => $name,
+        ]);
+        $this->assertDatabaseHas(Image::query()->getModel()->getTable(), [
+            'url' => $name,
+        ]);
     }
 }

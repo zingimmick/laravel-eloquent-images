@@ -17,11 +17,9 @@ class CustomImageTest extends HasImagesTest
     {
         parent::getEnvironmentSetUp($app);
 
-        config(
-            [
-                'eloquent-images.models.image' => $this->getImageClassName(),
-            ]
-        );
+        config([
+            'eloquent-images.models.image' => $this->getImageClassName(),
+        ]);
     }
 
     protected function getImageClassName()

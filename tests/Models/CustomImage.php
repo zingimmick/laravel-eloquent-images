@@ -10,7 +10,5 @@ class CustomImage extends Model
 {
     protected $table = 'images';
 
-    protected $fillable = [
-        'url',
-    ];
+    protected $fillable = ['url'];
 }
