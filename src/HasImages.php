@@ -28,7 +28,13 @@ trait HasImages
      */
     public function images(): MorphToMany
     {
-        return $this->morphToMany(static::getImageClassName(), 'imageable', config('eloquent-images.table_names.model_has_images'), config('eloquent-images.column_names.imageable_morph_key'), 'image_id')
+        return $this->morphToMany(
+            static::getImageClassName(),
+            'imageable',
+            config('eloquent-images.table_names.model_has_images'),
+            config('eloquent-images.column_names.imageable_morph_key'),
+            'image_id'
+        )
             ->orderBy('priority');
     }
 
@@ -80,7 +86,8 @@ trait HasImages
      */
     public function attachImages($images)
     {
-        $this->images()->attach(static::parseImages($images));
+        $this->images()
+            ->attach(static::parseImages($images));
 
         return $this;
     }
@@ -104,7 +111,8 @@ trait HasImages
      */
     public function detachImages($images)
     {
-        $this->images()->detach(static::parseImages($images));
+        $this->images()
+            ->detach(static::parseImages($images));
 
         return $this;
     }
@@ -128,26 +136,25 @@ trait HasImages
      */
     public function syncImages($images)
     {
-        $this->images()->sync(static::parseImages($images)->mapWithKeys(
-            function ($image, $key) {
-                return [
-                    $image->getKey() => [
-                        'priority' => $key,
-                    ],
-                ];
-            }
-        )->toArray());
+        $this->images()
+            ->sync(static::parseImages($images)->mapWithKeys(
+                function ($image, $key) {
+                    return [
+                        $image->getKey() => [
+                            'priority' => $key,
+                        ],
+                    ];
+                }
+            )->toArray());
 
         return $this;
     }
 
     protected static function parseImages($values)
     {
-        return Collection::make($values)->map(
-            function ($value) {
-                return self::parseImage($value);
-            }
-        );
+        return Collection::make($values)->map(function ($value) {
+            return self::parseImage($value);
+        });
     }
 
     protected static function parseImage($value): Model
@@ -156,10 +163,8 @@ trait HasImages
             return $value;
         }
 
-        return forward_static_call([static::getImageClassName(), 'query'])->firstOrCreate(
-            [
-                'url' => $value,
-            ]
-        );
+        return forward_static_call([static::getImageClassName(), 'query'])->firstOrCreate([
+            'url' => $value,
+        ]);
     }
 }
