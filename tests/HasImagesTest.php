@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Collection;
 use Zing\LaravelEloquentImages\Image;
 use Zing\LaravelEloquentImages\Tests\Models\Product;
 
-class HasImagesTest extends \Zing\LaravelEloquentImages\Tests\TestCase
+class HasImagesTest extends TestCase
 {
     protected function getImageClassName()
     {
