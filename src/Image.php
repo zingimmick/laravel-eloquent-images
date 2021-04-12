@@ -18,7 +18,7 @@ class Image extends Model
 {
     public function getTable()
     {
-        return config(config('eloquent-images.table_names.images'), parent::getTable());
+        return config('eloquent-images.table_names.images', parent::getTable());
     }
 
     public $timestamps = false;
