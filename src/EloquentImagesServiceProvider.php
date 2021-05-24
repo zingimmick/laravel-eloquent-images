@@ -29,9 +29,13 @@ class EloquentImagesServiceProvider extends ServiceProvider
     public function register(): void
     {
         $this->mergeConfigFrom($this->getConfigPath(), 'eloquent-images');
-        if ($this->app->runningInConsole() && $this->shouldLoadMigrations()) {
-            $this->loadMigrationsFrom($this->getMigrationsPath());
+        if (! $this->app->runningInConsole()) {
+            return;
         }
+        if (! $this->shouldLoadMigrations()) {
+            return;
+        }
+        $this->loadMigrationsFrom($this->getMigrationsPath());
     }
 
     protected function getMigrationsPath(): string
