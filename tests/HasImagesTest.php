@@ -10,7 +10,10 @@ use Zing\LaravelEloquentImages\Tests\Models\Product;
 
 class HasImagesTest extends TestCase
 {
-    protected function getImageClassName()
+    /**
+     * @return class-string
+     */
+    protected function getImageClassName(): string
     {
         return Image::class;
     }
@@ -22,6 +25,9 @@ class HasImagesTest extends TestCase
         $this->product = Product::query()->create();
     }
 
+    /**
+     * @var \Zing\LaravelEloquentImages\Tests\Models\Product
+     */
     protected $product;
 
     public function testDetachImages(): void

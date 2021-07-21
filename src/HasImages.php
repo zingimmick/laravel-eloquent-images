@@ -18,7 +18,7 @@ use Illuminate\Database\Eloquent\Relations\MorphToMany;
  */
 trait HasImages
 {
-    protected static function getImageClassName()
+    protected static function getImageClassName(): string
     {
         return config('eloquent-images.models.image');
     }
@@ -150,13 +150,23 @@ trait HasImages
         return $this;
     }
 
-    protected static function parseImages($values)
+    /**
+     * @param array|\ArrayAccess $values
+     *
+     * @return \Illuminate\Database\Eloquent\Collection
+     */
+    protected static function parseImages($values): Collection
     {
         return Collection::make($values)->map(function ($value) {
             return self::parseImage($value);
         });
     }
 
+    /**
+     * @param \Illuminate\Database\Eloquent\Model|string|mixed $value
+     *
+     * @return \Illuminate\Database\Eloquent\Model
+     */
     protected static function parseImage($value): Model
     {
         if ($value instanceof Model) {

@@ -22,7 +22,7 @@ class CustomImageTest extends HasImagesTest
         ]);
     }
 
-    protected function getImageClassName()
+    protected function getImageClassName(): string
     {
         return CustomImage::class;
     }
