@@ -32,9 +32,11 @@ class EloquentImagesServiceProvider extends ServiceProvider
         if (! $this->app->runningInConsole()) {
             return;
         }
+
         if (! $this->shouldLoadMigrations()) {
             return;
         }
+
         $this->loadMigrationsFrom($this->getMigrationsPath());
     }
 
