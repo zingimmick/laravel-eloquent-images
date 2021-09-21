@@ -23,9 +23,6 @@ trait HasImages
         return config('eloquent-images.models.image');
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\MorphToMany
-     */
     public function images(): MorphToMany
     {
         return $this->morphToMany(
@@ -39,10 +36,7 @@ trait HasImages
     }
 
     /**
-     * @param \Illuminate\Database\Eloquent\Builder $query
      * @param array|\ArrayAccess|\Zing\LaravelEloquentImages\Image $images
-     *
-     * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeWithAllImages(Builder $query, $images): Builder
     {
@@ -62,10 +56,7 @@ trait HasImages
     }
 
     /**
-     * @param \Illuminate\Database\Eloquent\Builder $query
      * @param array|\ArrayAccess|\Zing\LaravelEloquentImages\Image $images
-     *
-     * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeWithAnyImages(Builder $query, $images): Builder
     {
@@ -152,8 +143,6 @@ trait HasImages
 
     /**
      * @param array|\ArrayAccess $values
-     *
-     * @return \Illuminate\Database\Eloquent\Collection
      */
     protected static function parseImages($values): Collection
     {
@@ -164,8 +153,6 @@ trait HasImages
 
     /**
      * @param \Illuminate\Database\Eloquent\Model|string|mixed $value
-     *
-     * @return \Illuminate\Database\Eloquent\Model
      */
     protected static function parseImage($value): Model
     {
