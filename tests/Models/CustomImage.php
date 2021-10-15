@@ -13,5 +13,8 @@ class CustomImage extends Model
         return config('eloquent-images.table_names.images', parent::getTable());
     }
 
+    /**
+     * @var string[]
+     */
     protected $fillable = ['url'];
 }

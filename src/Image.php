@@ -21,7 +21,13 @@ class Image extends Model
         return config('eloquent-images.table_names.images', parent::getTable());
     }
 
+    /**
+     * @var bool
+     */
     public $timestamps = false;
 
+    /**
+     * @var string[]
+     */
     protected $fillable = ['url'];
 }

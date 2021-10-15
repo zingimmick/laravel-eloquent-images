@@ -129,7 +129,7 @@ trait HasImages
     {
         $this->images()
             ->sync(static::parseImages($images)->mapWithKeys(
-                function ($image, $key) {
+                function ($image, $key): array {
                     return [
                         $image->getKey() => [
                             'priority' => $key,
@@ -146,7 +146,7 @@ trait HasImages
      */
     protected static function parseImages($values): Collection
     {
-        return Collection::make($values)->map(function ($value) {
+        return Collection::make($values)->map(function ($value): Model {
             return self::parseImage($value);
         });
     }
