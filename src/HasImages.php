@@ -18,6 +18,9 @@ use Illuminate\Database\Eloquent\Relations\MorphToMany;
  */
 trait HasImages
 {
+    /**
+     * @return class-string<\Zing\LaravelEloquentImages\Image>
+     */
     protected static function getImageClassName(): string
     {
         return config('eloquent-images.models.image');
@@ -36,7 +39,7 @@ trait HasImages
     }
 
     /**
-     * @param array|\ArrayAccess|\Zing\LaravelEloquentImages\Image $images
+     * @param array<\Zing\LaravelEloquentImages\Image|string>|\ArrayAccess|\Zing\LaravelEloquentImages\Image $images
      */
     public function scopeWithAllImages(Builder $query, $images): Builder
     {
@@ -56,7 +59,7 @@ trait HasImages
     }
 
     /**
-     * @param array|\ArrayAccess|\Zing\LaravelEloquentImages\Image $images
+     * @param array<\Zing\LaravelEloquentImages\Image|string>|\ArrayAccess|\Zing\LaravelEloquentImages\Image $images
      */
     public function scopeWithAnyImages(Builder $query, $images): Builder
     {
@@ -71,7 +74,7 @@ trait HasImages
     }
 
     /**
-     * @param array|\ArrayAccess|\Zing\LaravelEloquentImages\Image $images
+     * @param array<\Zing\LaravelEloquentImages\Image|string>|\ArrayAccess|\Zing\LaravelEloquentImages\Image $images
      *
      * @return $this
      */
@@ -96,7 +99,7 @@ trait HasImages
     }
 
     /**
-     * @param array|\ArrayAccess $images
+     * @param array<\Zing\LaravelEloquentImages\Image|string>|\ArrayAccess $images
      *
      * @return $this
      */
@@ -121,7 +124,7 @@ trait HasImages
     }
 
     /**
-     * @param array|\ArrayAccess $images
+     * @param array<\Zing\LaravelEloquentImages\Image|string>|\ArrayAccess $images
      *
      * @return $this
      */
@@ -142,7 +145,7 @@ trait HasImages
     }
 
     /**
-     * @param array|\ArrayAccess $values
+     * @param array<\Zing\LaravelEloquentImages\Image|string>|\ArrayAccess $values
      */
     protected static function parseImages($values): Collection
     {
@@ -153,10 +156,12 @@ trait HasImages
 
     /**
      * @param \Illuminate\Database\Eloquent\Model|string|mixed $value
+     *
+     * @return \Zing\LaravelEloquentImages\Image
      */
     protected static function parseImage($value): Model
     {
-        if ($value instanceof Model) {
+        if (is_a($value, self::getImageClassName())) {
             return $value;
         }
 

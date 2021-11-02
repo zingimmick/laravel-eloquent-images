@@ -81,7 +81,7 @@ class HasImagesTest extends TestCase
     public function testSyncImages(): void
     {
         $this->product->attachImages(['foo', 'bar']);
-        $this->product->syncImages([$this->product->images()->first()]);
+        $this->product->syncImages([$this->product->images()->firstOrFail()]);
         self::assertSame(1, $this->product->images()->count());
         $this->product->syncImages([]);
         self::assertSame(0, $this->product->images()->count());
