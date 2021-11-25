@@ -13,7 +13,7 @@ class ImageTest extends TestCase
 
     public function testFillable(): void
     {
-        $name = $this->faker->name;
+        $name = $this->faker->name();
         Image::query()->create([
             'url' => $name,
         ]);
