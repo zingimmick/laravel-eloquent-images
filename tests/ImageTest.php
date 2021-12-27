@@ -7,7 +7,10 @@ namespace Zing\LaravelEloquentImages\Tests;
 use Illuminate\Foundation\Testing\WithFaker;
 use Zing\LaravelEloquentImages\Image;
 
-class ImageTest extends TestCase
+/**
+ * @internal
+ */
+final class ImageTest extends TestCase
 {
     use WithFaker;
 
