@@ -26,6 +26,9 @@ trait HasImages
         return config('eloquent-images.models.image');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\MorphToMany<\Zing\LaravelEloquentImages\Image>
+     */
     public function images(): MorphToMany
     {
         return $this->morphToMany(
@@ -35,7 +38,7 @@ trait HasImages
             config('eloquent-images.column_names.imageable_morph_key'),
             'image_id'
         )
-            ->orderBy('priority');
+            ->oldest('priority');
     }
 
     /**
