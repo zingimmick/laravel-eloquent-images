@@ -164,7 +164,7 @@ trait HasImages
      */
     protected static function parseImage($value): Model
     {
-        if (is_a($value, self::getImageClassName())) {
+        if (is_a($value, self::getImageClassName(), false)) {
             return $value;
         }
 
