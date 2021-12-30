@@ -38,7 +38,7 @@ trait HasImages
             config('eloquent-images.column_names.imageable_morph_key'),
             'image_id'
         )
-            ->oldest('priority');
+            ->orderBy('priority');
     }
 
     /**
