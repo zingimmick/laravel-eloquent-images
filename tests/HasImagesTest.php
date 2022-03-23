@@ -45,6 +45,7 @@ final class HasImagesTest extends TestCase
     public function provideClasses(): iterable
     {
         yield [Image::class];
+
         yield [CustomImage::class];
     }
 
