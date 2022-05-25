@@ -3,6 +3,11 @@
     "description": "Manage images for Laravel eloquent",
     "keywords": ["laravel", "eloquent", "images"],
     "license": "MIT",
+    "homepage": "https://github.com/zingimmick/laravel-eloquent-images",
+    "support": {
+        "issues": "https://github.com/zingimmick/laravel-eloquent-images/issues",
+        "source": "https://github.com/zingimmick/laravel-eloquent-images"
+    },
     "authors": [
         {
             "name": "zingimmick",
