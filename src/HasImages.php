@@ -161,12 +161,16 @@ trait HasImages
      */
     protected static function parseImage($value): Model
     {
+        if (\is_string($value)) {
+            return forward_static_call([static::getImageClassName(), 'query'])->firstOrCreate([
+                'url' => $value,
+            ]);
+        }
+
         if (is_a($value, self::getImageClassName(), false)) {
             return $value;
         }
 
-        return forward_static_call([static::getImageClassName(), 'query'])->firstOrCreate([
-            'url' => $value,
-        ]);
+        throw new \RuntimeException('Unsupported type for image');
     }
 }
