@@ -15,7 +15,7 @@ class CreateImageTables extends Migration
     {
         Schema::create(
             config('eloquent-images.table_names.images'),
-            function (Blueprint $table): void {
+            static function (Blueprint $table): void {
                 $table->bigIncrements('id');
                 $table->string('url');
                 $table->timestamps();
@@ -24,7 +24,7 @@ class CreateImageTables extends Migration
 
         Schema::create(
             config('eloquent-images.table_names.model_has_images'),
-            function (Blueprint $table): void {
+            static function (Blueprint $table): void {
                 $table->unsignedBigInteger('image_id');
                 $table->morphs('imageable');
                 $table->tinyInteger('priority')
@@ -32,7 +32,6 @@ class CreateImageTables extends Migration
                 $table->primary(
                     ['image_id', config('eloquent-images.column_names.imageable_morph_key'), 'imageable_type']
                 );
-
                 $table->foreign('image_id')
                     ->references('id')
                     ->on('images')

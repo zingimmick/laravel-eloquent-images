@@ -45,10 +45,10 @@ trait HasImages
     {
         $images = static::parseImages($images);
         $images->each(
-            function (Model $image) use ($query): void {
+            static function (Model $image) use ($query): void {
                 $query->whereHas(
                     'images',
-                    function (Builder $query) use ($image): void {
+                    static function (Builder $query) use ($image): void {
                         $query->whereKey($image->getKey());
                     }
                 );
@@ -67,7 +67,7 @@ trait HasImages
 
         return $query->whereHas(
             'images',
-            function (Builder $query) use ($images): void {
+            static function (Builder $query) use ($images): void {
                 $query->whereKey($images->modelKeys());
             }
         );
@@ -132,7 +132,7 @@ trait HasImages
     {
         $this->images()
             ->sync(static::parseImages($images)->mapWithKeys(
-                function ($image, $key): array {
+                static function ($image, $key): array {
                     return [
                         $image->getKey() => [
                             'priority' => $key,
@@ -149,7 +149,7 @@ trait HasImages
      */
     protected static function parseImages($values): Collection
     {
-        return Collection::make($values)->map(function ($value): Model {
+        return Collection::make($values)->map(static function ($value): Model {
             return self::parseImage($value);
         });
     }
