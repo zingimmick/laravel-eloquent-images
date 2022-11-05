@@ -46,10 +46,7 @@ final class HasImagesTest extends TestCase
         yield [CustomImage::class];
     }
 
-    /**
-     * @var \Zing\LaravelEloquentImages\Tests\Models\Product
-     */
-    private $product;
+    private \Zing\LaravelEloquentImages\Tests\Models\Product $product;
 
     /**
      * @dataProvider provideClasses

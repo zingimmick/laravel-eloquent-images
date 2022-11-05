@@ -41,8 +41,10 @@ trait HasImages
     /**
      * @param iterable<int, \Zing\LaravelEloquentImages\Image|string>|\Illuminate\Contracts\Support\Arrayable<int, \Zing\LaravelEloquentImages\Image|string>|\Zing\LaravelEloquentImages\Image $images
      */
-    public function scopeWithAllImages(Builder $query, $images): Builder
-    {
+    public function scopeWithAllImages(
+        Builder $query,
+        iterable|\Illuminate\Contracts\Support\Arrayable|Image $images
+    ): Builder {
         $images = static::parseImages($images);
         $images->each(
             static function (Model $image) use ($query): void {
@@ -61,8 +63,10 @@ trait HasImages
     /**
      * @param iterable<int, \Zing\LaravelEloquentImages\Image|string>|\Illuminate\Contracts\Support\Arrayable<int, \Zing\LaravelEloquentImages\Image|string>|\Zing\LaravelEloquentImages\Image $images
      */
-    public function scopeWithAnyImages(Builder $query, $images): Builder
-    {
+    public function scopeWithAnyImages(
+        Builder $query,
+        iterable|\Illuminate\Contracts\Support\Arrayable|Image $images
+    ): Builder {
         $images = static::parseImages($images);
 
         return $query->whereHas(
@@ -78,7 +82,7 @@ trait HasImages
      *
      * @return $this
      */
-    public function attachImages($images)
+    public function attachImages(iterable|\Illuminate\Contracts\Support\Arrayable|Image $images)
     {
         $this->images()
             ->attach(static::parseImages($images));
@@ -87,11 +91,9 @@ trait HasImages
     }
 
     /**
-     * @param string|\Zing\LaravelEloquentImages\Image $image
-     *
      * @return $this
      */
-    public function attachImage($image)
+    public function attachImage(string|Image $image)
     {
         $this->attachImages([$image]);
 
@@ -103,7 +105,7 @@ trait HasImages
      *
      * @return $this
      */
-    public function detachImages($images)
+    public function detachImages(iterable|\Illuminate\Contracts\Support\Arrayable $images)
     {
         $this->images()
             ->detach(static::parseImages($images));
@@ -112,11 +114,9 @@ trait HasImages
     }
 
     /**
-     * @param string|\Zing\LaravelEloquentImages\Image $image
-     *
      * @return $this
      */
-    public function detachImage($image)
+    public function detachImage(string|Image $image)
     {
         $this->detachImages([$image]);
 
@@ -128,17 +128,15 @@ trait HasImages
      *
      * @return $this
      */
-    public function syncImages($images)
+    public function syncImages(iterable|\Illuminate\Contracts\Support\Arrayable $images)
     {
         $this->images()
             ->sync(static::parseImages($images)->mapWithKeys(
-                static function ($image, $key): array {
-                    return [
-                        $image->getKey() => [
-                            'priority' => $key,
-                        ],
-                    ];
-                }
+                static fn ($image, $key): array => [
+                    $image->getKey() => [
+                        'priority' => $key,
+                    ],
+                ]
             )->toArray());
 
         return $this;
@@ -147,19 +145,15 @@ trait HasImages
     /**
      * @param iterable<int, \Zing\LaravelEloquentImages\Image|string>|\Illuminate\Contracts\Support\Arrayable<int, \Zing\LaravelEloquentImages\Image|string> $values
      */
-    protected static function parseImages($values): Collection
+    protected static function parseImages(iterable|\Illuminate\Contracts\Support\Arrayable $values): Collection
     {
-        return Collection::make($values)->map(static function ($value): Model {
-            return self::parseImage($value);
-        });
+        return Collection::make($values)->map(static fn ($value): Model => self::parseImage($value));
     }
 
     /**
-     * @param \Illuminate\Database\Eloquent\Model|string $value
-     *
      * @return \Zing\LaravelEloquentImages\Image
      */
-    protected static function parseImage($value): Model
+    protected static function parseImage(Model|string $value): Model
     {
         if (\is_string($value)) {
             return forward_static_call([static::getImageClassName(), 'query'])->firstOrCreate([
