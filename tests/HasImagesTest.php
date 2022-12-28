@@ -39,7 +39,7 @@ final class HasImagesTest extends TestCase
     /**
      * @return \Iterator<array{class-string<\Zing\LaravelEloquentImages\Image>}|array{class-string<\Zing\LaravelEloquentImages\Tests\Models\CustomImage>}>
      */
-    public function provideClasses(): iterable
+    public function provideClasses(): \Iterator
     {
         yield [Image::class];
 
