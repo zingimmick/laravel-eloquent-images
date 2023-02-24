@@ -27,7 +27,7 @@ final class HasImagesTest extends TestCase
     public function setUpImageClass(): void
     {
         $this->afterApplicationCreated(function (): void {
-            $data = $this->getProvidedData();
+            $data = method_exists($this, 'providedData') ? $this->providedData() : $this->getProvidedData();
             if (isset($data[0])) {
                 config([
                     'eloquent-images.models.image' => $data[0],
@@ -39,7 +39,7 @@ final class HasImagesTest extends TestCase
     /**
      * @return \Iterator<array{class-string<\Zing\LaravelEloquentImages\Image>}|array{class-string<\Zing\LaravelEloquentImages\Tests\Models\CustomImage>}>
      */
-    public function provideClasses(): \Iterator
+    public static function provideClasses(): \Iterator
     {
         yield [Image::class];
 
