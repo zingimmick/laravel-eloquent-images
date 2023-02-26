@@ -27,7 +27,7 @@ final class HasImagesTest extends TestCase
     public function setUpImageClass(): void
     {
         $this->afterApplicationCreated(function (): void {
-            $data = method_exists($this, 'providedData') ? $this->providedData() : $this->getProvidedData();
+            $data = method_exists($this, 'getProvidedData') ? $this->getProvidedData() : $this->providedData();
             if (isset($data[0])) {
                 config([
                     'eloquent-images.models.image' => $data[0],
