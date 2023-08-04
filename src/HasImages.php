@@ -43,7 +43,7 @@ trait HasImages
      */
     public function scopeWithAllImages(
         Builder $query,
-        iterable|\Illuminate\Contracts\Support\Arrayable|Image $images
+        \Illuminate\Contracts\Support\Arrayable|Image|iterable $images
     ): Builder {
         $images = static::parseImages($images);
         $images->each(
@@ -65,7 +65,7 @@ trait HasImages
      */
     public function scopeWithAnyImages(
         Builder $query,
-        iterable|\Illuminate\Contracts\Support\Arrayable|Image $images
+        \Illuminate\Contracts\Support\Arrayable|Image|iterable $images
     ): Builder {
         $images = static::parseImages($images);
 
@@ -82,7 +82,7 @@ trait HasImages
      *
      * @return $this
      */
-    public function attachImages(iterable|\Illuminate\Contracts\Support\Arrayable|Image $images)
+    public function attachImages(\Illuminate\Contracts\Support\Arrayable|Image|iterable $images)
     {
         $this->images()
             ->attach(static::parseImages($images));
@@ -93,7 +93,7 @@ trait HasImages
     /**
      * @return $this
      */
-    public function attachImage(string|Image $image)
+    public function attachImage(Image|string $image)
     {
         $this->attachImages([$image]);
 
@@ -105,7 +105,7 @@ trait HasImages
      *
      * @return $this
      */
-    public function detachImages(iterable|\Illuminate\Contracts\Support\Arrayable $images)
+    public function detachImages(\Illuminate\Contracts\Support\Arrayable|iterable $images)
     {
         $this->images()
             ->detach(static::parseImages($images));
@@ -116,7 +116,7 @@ trait HasImages
     /**
      * @return $this
      */
-    public function detachImage(string|Image $image)
+    public function detachImage(Image|string $image)
     {
         $this->detachImages([$image]);
 
@@ -128,7 +128,7 @@ trait HasImages
      *
      * @return $this
      */
-    public function syncImages(iterable|\Illuminate\Contracts\Support\Arrayable $images)
+    public function syncImages(\Illuminate\Contracts\Support\Arrayable|iterable $images)
     {
         $this->images()
             ->sync(static::parseImages($images)->mapWithKeys(
@@ -145,7 +145,7 @@ trait HasImages
     /**
      * @param iterable<int, \Zing\LaravelEloquentImages\Image|string>|\Illuminate\Contracts\Support\Arrayable<int, \Zing\LaravelEloquentImages\Image|string> $values
      */
-    protected static function parseImages(iterable|\Illuminate\Contracts\Support\Arrayable $values): Collection
+    protected static function parseImages(\Illuminate\Contracts\Support\Arrayable|iterable $values): Collection
     {
         return Collection::make($values)->map(static fn ($value): Model => self::parseImage($value));
     }
