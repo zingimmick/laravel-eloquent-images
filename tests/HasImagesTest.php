@@ -57,7 +57,7 @@ final class HasImagesTest extends TestCase
     {
         $this->product->attachImages(['foo', 'bar']);
         $this->product->detachImages(['foo']);
-        self::assertSame(1, $this->product->images()->whereIn('url', ['foo', 'bar'])->count());
+        $this->assertSame(1, $this->product->images()->whereIn('url', ['foo', 'bar'])->count());
     }
 
     /**
@@ -68,7 +68,7 @@ final class HasImagesTest extends TestCase
     public function testAttachImages(string $imageClass): void
     {
         $this->product->attachImages(['foo', 'bar']);
-        self::assertSame(2, $this->product->images()->whereIn('url', ['foo', 'bar'])->count());
+        $this->assertSame(2, $this->product->images()->whereIn('url', ['foo', 'bar'])->count());
     }
 
     /**
@@ -79,8 +79,8 @@ final class HasImagesTest extends TestCase
     public function testImages(string $imageClass): void
     {
         $this->product->attachImages(['foo', 'bar']);
-        self::assertInstanceOf($imageClass, $this->product->images()->first());
-        self::assertInstanceOf(Collection::class, $this->product->images()->get());
+        $this->assertInstanceOf($imageClass, $this->product->images()->first());
+        $this->assertInstanceOf(Collection::class, $this->product->images()->get());
     }
 
     /**
@@ -91,9 +91,9 @@ final class HasImagesTest extends TestCase
     public function testImagesPriority(string $imageClass): void
     {
         $this->product->syncImages(['foo', 'bar']);
-        self::assertSame(['foo', 'bar'], $this->product->images()->pluck('url')->toArray());
+        $this->assertSame(['foo', 'bar'], $this->product->images()->pluck('url')->toArray());
         $this->product->syncImages(['bar', 'foo']);
-        self::assertSame(['bar', 'foo'], $this->product->images()->pluck('url')->toArray());
+        $this->assertSame(['bar', 'foo'], $this->product->images()->pluck('url')->toArray());
     }
 
     /**
@@ -104,7 +104,7 @@ final class HasImagesTest extends TestCase
     public function testAttachImage(string $imageClass): void
     {
         $this->product->attachImage('foo');
-        self::assertSame(1, $this->product->images()->whereIn('url', ['foo', 'bar'])->count());
+        $this->assertSame(1, $this->product->images()->whereIn('url', ['foo', 'bar'])->count());
     }
 
     /**
@@ -116,7 +116,7 @@ final class HasImagesTest extends TestCase
     {
         $this->product->attachImages(['foo', 'bar']);
         $this->product->detachImage('foo');
-        self::assertSame(1, $this->product->images()->whereIn('url', ['foo', 'bar'])->count());
+        $this->assertSame(1, $this->product->images()->whereIn('url', ['foo', 'bar'])->count());
     }
 
     /**
@@ -127,8 +127,8 @@ final class HasImagesTest extends TestCase
     public function testScopeWithAllImages(string $imageClass): void
     {
         $this->product->attachImage('foo');
-        self::assertFalse(Product::query()->withAllImages(['foo', 'bar'])->exists());
-        self::assertTrue(Product::query()->withAllImages(['foo'])->exists());
+        $this->assertFalse(Product::query()->withAllImages(['foo', 'bar'])->exists());
+        $this->assertTrue(Product::query()->withAllImages(['foo'])->exists());
     }
 
     /**
@@ -140,9 +140,9 @@ final class HasImagesTest extends TestCase
     {
         $this->product->attachImages(['foo', 'bar']);
         $this->product->syncImages([$this->product->images()->firstOrFail()]);
-        self::assertSame(1, $this->product->images()->count());
+        $this->assertSame(1, $this->product->images()->count());
         $this->product->syncImages([]);
-        self::assertSame(0, $this->product->images()->count());
+        $this->assertSame(0, $this->product->images()->count());
     }
 
     /**
@@ -153,6 +153,6 @@ final class HasImagesTest extends TestCase
     public function testScopeWithAnyImages(string $imageClass): void
     {
         $this->product->attachImage('foo');
-        self::assertTrue(Product::query()->withAnyImages(['foo', 'bar'])->exists());
+        $this->assertTrue(Product::query()->withAnyImages(['foo', 'bar'])->exists());
     }
 }
