@@ -26,8 +26,5 @@ class Image extends Model
      */
     public $timestamps = false;
 
-    /**
-     * @var string[]
-     */
     protected $fillable = ['url'];
 }
