@@ -21,20 +21,20 @@ use Zing\LaravelEloquentImages\Image;
 
 $product = Product::query()->first();
 // Add image(s) to model
-$product->attachImage("https://github.com/zingimmick/laravel-eloquent-images/workflows/tests/badge.svg");
+$product->attachImage("https://avatars.githubusercontent.com/u/26657141");
 $product->attachImages([
-    "https://github.com/zingimmick/laravel-eloquent-images/workflows/tests/badge.svg",
+    "https://avatars.githubusercontent.com/u/26657141",
     Image::query()->first()
 ]);
 // Remove image(s) from model
-$product->detachImage("https://github.com/zingimmick/laravel-eloquent-images/workflows/tests/badge.svg");
+$product->detachImage("https://avatars.githubusercontent.com/u/26657141");
 $product->detachImages([
-    "https://github.com/zingimmick/laravel-eloquent-images/workflows/tests/badge.svg",
+    "https://avatars.githubusercontent.com/u/26657141",
     Image::query()->first()
 ]);
 // Reset images of model
 $product->syncImages([
-    "https://github.com/zingimmick/laravel-eloquent-images/workflows/tests/badge.svg",
+    "https://avatars.githubusercontent.com/u/26657141",
     Image::query()->first()
 ]);
 // Get images of model
