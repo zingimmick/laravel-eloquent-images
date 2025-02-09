@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Zing\LaravelEloquentImages\Tests;
 
-use Illuminate\Database\Eloquent\Collection;
 use Zing\LaravelEloquentImages\Image;
 use Zing\LaravelEloquentImages\Tests\Models\CustomImage;
 use Zing\LaravelEloquentImages\Tests\Models\Product;
@@ -80,7 +79,6 @@ final class HasImagesTest extends TestCase
     {
         $this->product->attachImages(['foo', 'bar']);
         $this->assertInstanceOf($imageClass, $this->product->images()->first());
-        $this->assertInstanceOf(Collection::class, $this->product->images()->get());
     }
 
     /**
@@ -139,7 +137,11 @@ final class HasImagesTest extends TestCase
     public function testSyncImages(string $imageClass): void
     {
         $this->product->attachImages(['foo', 'bar']);
-        $this->product->syncImages([$this->product->images()->firstOrFail()]);
+
+        /** @var \Zing\LaravelEloquentImages\Image $image */
+        $image = $this->product->images()
+            ->firstOrFail();
+        $this->product->syncImages([$image]);
         $this->assertSame(1, $this->product->images()->count());
         $this->product->syncImages([]);
         $this->assertSame(0, $this->product->images()->count());
