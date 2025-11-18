@@ -147,7 +147,9 @@ trait HasImages
      */
     protected static function parseImages(\Illuminate\Contracts\Support\Arrayable|iterable $values): Collection
     {
-        return Collection::make($values)->map(static fn ($value): Model => self::parseImage($value));
+        return Collection::make($values)->map(
+            static fn (\Illuminate\Database\Eloquent\Model|string $value): Model => self::parseImage($value)
+        );
     }
 
     /**
